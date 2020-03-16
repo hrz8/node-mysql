@@ -1,0 +1,24 @@
+{
+  "name": "node-mysql",
+  "version": "1.0.0",
+  "description": "simple node mysql route with view",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/hirzi/node-mysql.git"
+  },
+  "keywords": [
+    "node",
+    "mysql",
+    "simple"
+  ],
+  "author": "hirzi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/hirzi/node-mysql/issues"
+  },
+  "homepage": "https://gitlab.com/hirzi/node-mysql#readme"
+}
