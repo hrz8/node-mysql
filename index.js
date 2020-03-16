@@ -15,7 +15,10 @@ app.get('/api', (req, res) => {
             console.log(error)
         }
         else {
-            res.json(rows);
+            res.json({
+                status: 'success',
+                data: rows
+            });
             res.end();
         }
     });
@@ -27,7 +30,10 @@ app.get('/apivot', (req, res) => {
             console.log(error)
         }
         else {
-            res.json(rows);
+            res.json({
+                status: 'success',
+                data: rows
+            });
             res.end();
         }
     });
@@ -44,3 +50,5 @@ db.connect().connect(err => {
         console.log(`server is running on port: ${PORT}`);
     });
 });
+
+module.exports = app;

@@ -18,8 +18,8 @@
                     .then((response) => {
                         return response.json();
                     })
-                    .then((data) => {
-                        drawTable(data);
+                    .then((result) => {
+                        drawTable(result.data);
                     });
                 state = 'pivot';
             }
@@ -28,8 +28,8 @@
                     .then((response) => {
                         return response.json();
                     })
-                    .then((data) => {
-                        drawTable(data);
+                    .then((result) => {
+                        drawTable(result.data);
                     });
                 state = 'normal';
             }
@@ -70,8 +70,8 @@
             .then((response) => {
                 return response.json();
             })
-            .then((data) => {
-                drawTable(data);
+            .then((result) => {
+                drawTable(result.data);
             });
     </script>
 </body>
