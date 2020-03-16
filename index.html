@@ -8,40 +8,70 @@
 </head>
 <body>
     <div id="showData"></div>
+    <button onclick="pivot()">pivot</button>
     <script>
+        let state = 'normal';
+
+        const pivot = () => {
+            if (state === 'normal') {
+                fetch('http://localhost:4000/apivot')
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        drawTable(data);
+                    });
+                state = 'pivot';
+            }
+            else {
+                fetch('http://localhost:4000/api')
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        drawTable(data);
+                    });
+                state = 'normal';
+            }
+        }
+
+        const drawTable = data => {
+            let col = [];
+            for (let i = 0; i < data.length; i++) {
+                for (const key in data[i]) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key);
+                    }
+                }
+            }
+            var table = document.createElement("table");
+            var tr = table.insertRow(-1);
+
+            for (let i = 0; i < col.length; i++) {
+                const th = document.createElement("th");
+                th.innerHTML = col[i];
+                tr.appendChild(th);
+            }
+
+            for (let i = 0; i < data.length; i++) {
+                tr = table.insertRow(-1);
+                for (let j = 0; j < col.length; j++) {
+                    const tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = data[i][col[j]];
+                }
+            }
+
+            var divContainer = document.getElementById("showData");
+            divContainer.innerHTML = "";
+            divContainer.appendChild(table);
+        }
+
         fetch('http://localhost:4000/api')
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                let col = [];
-                for (let i = 0; i < data.length; i++) {
-                    for (const key in data[i]) {
-                        if (col.indexOf(key) === -1) {
-                            col.push(key);
-                        }
-                    }
-                }
-                var table = document.createElement("table");
-                var tr = table.insertRow(-1);
-
-                for (let i = 0; i < col.length; i++) {
-                    const th = document.createElement("th");
-                    th.innerHTML = col[i];
-                    tr.appendChild(th);
-                }
-
-                for (let i = 0; i < data.length; i++) {
-                    tr = table.insertRow(-1);
-                    for (let j = 0; j < col.length; j++) {
-                        const tabCell = tr.insertCell(-1);
-                        tabCell.innerHTML = data[i][col[j]];
-                    }
-                }
-
-                var divContainer = document.getElementById("showData");
-                divContainer.innerHTML = "";
-                divContainer.appendChild(table);
+                drawTable(data);
             });
     </script>
 </body>
