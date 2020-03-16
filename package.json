@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://gitlab.com/hirzi/node-mysql/issues"
   },
-  "homepage": "https://gitlab.com/hirzi/node-mysql#readme"
+  "homepage": "https://gitlab.com/hirzi/node-mysql#readme",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
 }
